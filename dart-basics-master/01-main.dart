@@ -1,5 +1,4 @@
 void main() {
-  
   /*
   print('Hola Mundo');
   asdasd
@@ -7,9 +6,8 @@ void main() {
   a
   sdasd
   */
-  
-  String nombre;
+
+  String nombre = 'Pincho';
 
   print('Hola $nombre');
-  
 }
