@@ -13,13 +13,12 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('HomeScreen'),
         elevation: 0,
-        backgroundColor: Colors.indigo,
       ),
       body: ListView.separated(
           itemBuilder: (context, index) {
             final option = menuOptions[index];
             return ListTile(
-              leading: Icon(option.icon, color: Colors.indigo),
+              leading: Icon(option.icon),
               title: Text(option.name),
               trailing: const Icon(Icons.arrow_forward_ios_outlined),
               onTap: () => Navigator.pushNamed(context, option.route),
