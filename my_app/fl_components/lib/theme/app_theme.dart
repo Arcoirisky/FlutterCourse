@@ -12,6 +12,11 @@ class AppTheme {
     listTileTheme: const ListTileThemeData(
       iconColor: primaryColor,
     ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        primary: primaryColor,
+      ),
+    ),
   );
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
