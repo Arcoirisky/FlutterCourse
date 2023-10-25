@@ -37,6 +37,11 @@ class AppRoutes {
         name: 'Avatar Screen',
         screen: const AvatarScreen(),
         icon: Icons.supervised_user_circle_outlined),
+    MenuOption(
+        route: 'animated',
+        name: 'Animated container',
+        screen: const AnimatedScreen(),
+        icon: Icons.play_circle_filled_outlined),
   ];
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
