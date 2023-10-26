@@ -13,7 +13,7 @@ class InputScreen extends StatelessWidget {
       'last_name': '',
       'email': '',
       'password': '',
-      'role': 'admin'
+      'role': ''
     };
 
     return Scaffold(
@@ -59,13 +59,33 @@ class InputScreen extends StatelessWidget {
                   formValues: formValues,
                 ),
                 const SizedBox(height: 30),
+                DropdownButtonFormField<String>(
+                    value: 'Admin',
+                    items: const [
+                      DropdownMenuItem(
+                          value: 'Admin', child: Text('Administrador')),
+                      DropdownMenuItem(
+                          value: 'Superuser', child: Text('Súper usuario')),
+                      DropdownMenuItem(
+                          value: 'Developer', child: Text('Desarrollador')),
+                      DropdownMenuItem(
+                          value: 'Jr. Developer',
+                          child: Text('Jr. Desarrollador')),
+                    ],
+                    onChanged: (value) {
+                      print(value);
+                      formValues['role'] = value ?? 'Admin';
+                    }),
+                const SizedBox(height: 30),
                 ElevatedButton(
                   child: const SizedBox(
                       width: double.infinity,
                       child: Center(child: Text('Guardar'))),
                   onPressed: () {
-                    FocusScope.of(context)
-                        .requestFocus(FocusNode()); // Hide keyboard
+                    FocusManager.instance.primaryFocus?.unfocus();
+
+                    // FocusScope.of(context)
+                    //     .requestFocus(FocusNode()); // Hide keyboard
 
                     if (!myFormKey.currentState!.validate()) {
                       print('Formulario inválido');
