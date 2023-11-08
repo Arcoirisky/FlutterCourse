@@ -33,6 +33,13 @@ class Movie {
     required this.voteCount,
   });
 
+  get fullBackdropImg {
+    if (backdropPath != null) {
+      return 'https://image.tmdb.org/t/p/w500$backdropPath';
+    }
+    return 'https://i.stack.imgur.com/GNhxO.png';
+  }
+
   get fullPosterImg {
     if (posterPath != null) {
       return 'https://image.tmdb.org/t/p/w500$posterPath';
