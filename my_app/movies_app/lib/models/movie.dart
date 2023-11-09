@@ -16,6 +16,8 @@ class Movie {
   String originalTitle;
   String originalLanguage;
 
+  String? heroId;
+
   Movie({
     this.posterPath,
     this.releaseDate,
