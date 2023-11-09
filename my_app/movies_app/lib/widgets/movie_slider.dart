@@ -58,15 +58,15 @@ class _MovieSliderState extends State<MovieSlider> {
             const SizedBox(height: 5),
             Expanded(
               child: ListView.builder(
-                  controller: scrollController,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: widget.movies.length,
-                  itemBuilder: (_, int index) => _MoviePoster(
-                        movie: widget.movies[index],
-                        heroId:
-                            '${widget.title}-${index}-${widget.movies[index].id}',
-                      )),
-            ),
+                controller: scrollController,
+                scrollDirection: Axis.horizontal,
+                itemCount: widget.movies.length,
+                itemBuilder: (_, int index) => _MoviePoster(
+                  movie: widget.movies[index],
+                  heroId: '${widget.title}-${widget.movies[index].id}-$index',
+                ),
+              ),
+            )
           ],
         ));
   }
@@ -74,13 +74,14 @@ class _MovieSliderState extends State<MovieSlider> {
 
 class _MoviePoster extends StatelessWidget {
   final Movie movie;
-  final String heroId;
+  final String? heroId;
 
-  const _MoviePoster({Key? key, required this.movie, required this.heroId})
+  const _MoviePoster({Key? key, required this.movie, this.heroId})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    movie.heroId = heroId ?? 'slider-${movie.id}';
     return Container(
         width: 130,
         height: 190,

@@ -82,7 +82,7 @@ class _SuggestionMovieItem extends StatelessWidget {
         ),
       ),
       title: Text(movie.title),
-      onTap: () => Navigator.pushNamed(context, 'details', arguments: movie),
+      onTap: () => {Navigator.pushNamed(context, 'details', arguments: movie)},
     );
   }
 }
