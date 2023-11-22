@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:productos_app/widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -6,32 +7,20 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('HomeScreen'),
-            const SizedBox(height: 50),
-            MaterialButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              disabledColor: Colors.grey,
-              elevation: 0,
-              color: Colors.deepPurple,
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-                child: const Text(
-                  'Cerrar sesión',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, 'login');
-              },
-            )
-          ],
+      appBar: AppBar(
+        title: const Text('Productos'),
+      ),
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (BuildContext context, int index) => GestureDetector(
+          child: const ProductCard(),
+          onTap: () =>
+              Navigator.pushNamed(context, 'product', arguments: 'Hola Mundo'),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {},
       ),
     );
   }
