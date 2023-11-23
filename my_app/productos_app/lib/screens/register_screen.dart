@@ -5,8 +5,8 @@ import 'package:productos_app/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:productos_app/providers/login_form_provider.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +34,9 @@ class LoginScreen extends StatelessWidget {
                   shape: MaterialStateProperty.all(const StadiumBorder()),
                 ),
                 onPressed: () =>
-                    Navigator.pushReplacementNamed(context, 'register'),
+                    Navigator.pushReplacementNamed(context, 'login'),
                 child: const Text(
-                  'Crear una nueva cuenta',
+                  '¿Tienes una cuenta?',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -66,7 +66,7 @@ class _LoginForm extends StatelessWidget {
         children: [
           const SizedBox(height: 10),
           Text(
-            'Login',
+            'Register',
             style: Theme.of(context).textTheme.headline4,
           ),
           const SizedBox(height: 10),
@@ -98,7 +98,7 @@ class _LoginButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
         child: Text(
-          loginForm.isLoading ? 'Espere' : 'Ingresar',
+          loginForm.isLoading ? 'Espere' : 'Registrarse',
           style: const TextStyle(color: Colors.white),
         ),
       ),
@@ -112,17 +112,19 @@ class _LoginButton extends StatelessWidget {
               if (!loginForm.isValidForm()) return;
               loginForm.isLoading = true;
 
-              final String? errorMessage =
-                  await authService.login(loginForm.email, loginForm.password);
+              final String? errorMessage = await authService.createUser(
+                  loginForm.email, loginForm.password);
 
               if (errorMessage == null) {
                 // Mostrar error
                 Navigator.pushReplacementNamed(context, 'home');
               } else {
                 // TODO: Mostrar error en pantalla
+                print(errorMessage);
                 NotificationsService.showSnackbarError(errorMessage);
                 loginForm.isLoading = false;
               }
+              // Validar si el registro es correcto
             },
     );
   }
